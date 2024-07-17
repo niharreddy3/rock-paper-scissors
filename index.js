@@ -9,3 +9,8 @@ function getComputerChoice() {
     return "scissors";
   }
 }
+
+function getHumanChoice() {
+  let humanChoice = prompt("Select rock, paper or scissors.").toLowerCase();
+  return humanChoice;
+}
