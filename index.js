@@ -39,3 +39,17 @@ function playRound(humanChoice, computerChoice) {
     }
   }
 }
+
+function playGame() {
+  playRound(getHumanChoice(), getComputerChoice());
+  playRound(getHumanChoice(), getComputerChoice());
+  playRound(getHumanChoice(), getComputerChoice());
+  playRound(getHumanChoice(), getComputerChoice());
+  playRound(getHumanChoice(), getComputerChoice());
+
+  if (humanScore > computerScore) {
+    return "Human won.";
+  } else if (computerScore > humanScore) {
+    return "Computer won.";
+  }
+}
