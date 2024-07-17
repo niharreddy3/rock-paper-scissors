@@ -41,6 +41,8 @@ function playRound(humanChoice, computerChoice) {
 }
 
 function playGame() {
+  let result;
+
   playRound(getHumanChoice(), getComputerChoice());
   playRound(getHumanChoice(), getComputerChoice());
   playRound(getHumanChoice(), getComputerChoice());
@@ -48,8 +50,12 @@ function playGame() {
   playRound(getHumanChoice(), getComputerChoice());
 
   if (humanScore > computerScore) {
-    return "Human won.";
+    result = "Human won.";
   } else if (computerScore > humanScore) {
-    return "Computer won.";
+    result = "Computer won.";
   }
+
+  humanScore = 0;
+  computerScore = 0;
+  return result;
 }
