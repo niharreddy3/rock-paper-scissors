@@ -1,5 +1,31 @@
 let humanScore = 0;
 let computerScore = 0;
+let result;
+
+let humanScoreTracker = document.querySelector("#human-score");
+let computerScoreTracker = document.querySelector("#computer-score");
+let resultsDiv = document.querySelector("#results");
+
+let userSelection = document.querySelector("#user-selection");
+
+userSelection.addEventListener("click", function (event) {
+  let target = event.target;
+
+  switch (target.id) {
+    case "rock-button":
+      playRound("rock", getComputerChoice());
+      scoreTracker();
+      break;
+    case "paper-button":
+      playRound("paper", getComputerChoice());
+      scoreTracker();
+      break;
+    case "scissors-button":
+      playRound("scissors", getComputerChoice());
+      scoreTracker();
+      break;
+  }
+});
 
 function getComputerChoice() {
   let choice = Math.floor(Math.random() * 3);
@@ -11,11 +37,6 @@ function getComputerChoice() {
   } else {
     return "scissors";
   }
-}
-
-function getHumanChoice() {
-  let humanChoice = prompt("Select rock, paper or scissors.").toLowerCase();
-  return humanChoice;
 }
 
 function playRound(humanChoice, computerChoice) {
@@ -40,22 +61,20 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
-function playGame() {
-  let result;
+function scoreTracker() {
+  humanScoreTracker.textContent = `Human Score: ${humanScore}`;
+  computerScoreTracker.textContent = `Computer Score: ${computerScore}`;
 
-  playRound(getHumanChoice(), getComputerChoice());
-  playRound(getHumanChoice(), getComputerChoice());
-  playRound(getHumanChoice(), getComputerChoice());
-  playRound(getHumanChoice(), getComputerChoice());
-  playRound(getHumanChoice(), getComputerChoice());
-
-  if (humanScore > computerScore) {
+  if (humanScore === 5) {
     result = "Human won.";
-  } else if (computerScore > humanScore) {
+    const humanWonDeclaration = document.createElement("p");
+    humanWonDeclaration.textContent = "Human won by getting to 5 pts first";
+    resultsDiv.appendChild(humanWonDeclaration);
+  } else if (computerScore === 5) {
     result = "Computer won.";
+    const computerWonDeclaration = document.createElement("p");
+    computerWonDeclaration.textContent =
+      "Computer won by getting to 5 pts first";
+    resultsDiv.appendChild(computerWonDeclaration);
   }
-
-  humanScore = 0;
-  computerScore = 0;
-  return result;
 }
